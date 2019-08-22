@@ -1,12 +1,12 @@
 #include <Adafruit_NeoPixel.h>
 
 #define PIN 2 //lampu Kiri
-#define PIN1 3 //Lampu Kanan
+#define PIN1 6 //Lampu Kanan
 
 int TBKiri     = A0;
-int TBKanan    = A1;
-int TBHazard   = A2;
-int TBStop     = A3;
+int TBHazard    = A1;
+int TBStop    = A2;
+int TBKanan    = A3;
 int TBAnimasi  = A4;
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(24, PIN, NEO_GRB + NEO_KHZ800);
@@ -52,7 +52,7 @@ void key(){
    if ( data1 == 0){
     if(hold1 == 0){
     hold1 = 0;  
-    Senkanan();
+    Hazard();
   } 
   }
   else{
@@ -72,7 +72,7 @@ void key(){
     if ( data3 == 0){
     if(hold3 == 0){
     hold3 = 0;  
-    Hazard();
+    Senkanan();
   } 
   }
   else{
@@ -89,8 +89,8 @@ void key(){
   }
 }
 void Senkiri(){
-  kiri(strip.Color(255, 255, 0), 50); // Red
-  kiri(strip.Color(0, 0, 0), 50); // Red
+  kiri(strip.Color(255, 255, 0), 10); // Red
+  kiri(strip.Color(0, 0, 0), 10); // Red
 }
 void kiri(uint32_t c, uint8_t wait) {
   for(uint16_t i=0; i<strip1.numPixels(); i++){
@@ -101,8 +101,8 @@ void kiri(uint32_t c, uint8_t wait) {
 }
 
 void Senkanan(){
-  kanan(strip1.Color(255, 255, 0), 50); // Red
-  kanan(strip1.Color(0, 0, 0), 50); // Red
+  kanan(strip1.Color(255, 255, 0), 10); // Red
+  kanan(strip1.Color(0, 0, 0), 10); // Red
 }
 void kanan(uint32_t c, uint8_t wait) {
   for(uint16_t i=0; i<strip1.numPixels(); i++){
@@ -113,8 +113,8 @@ void kanan(uint32_t c, uint8_t wait) {
 }
 
 void Hazard(){
-  tengah(strip.Color(255, 255, 0), 50); // Red
-  tengah(strip.Color(0, 0, 0), 50); // Red
+  tengah(strip.Color(255, 255, 0), 10); // Red
+  tengah(strip.Color(0, 0, 0), 10); // Red
 }
 void tengah(uint32_t c, uint8_t wait) {
   for(uint16_t i=0; i<strip.numPixels(); i++){
@@ -133,7 +133,7 @@ void Stop(){
   berhenti(strip.Color(0, 0, 0), 2); // Red
 }
 void berhenti(uint32_t c, uint8_t wait) {
-      for(int i=0;i<=7;i++){
+      for(int i=0;i<=23;i++){
       strip1.setPixelColor(i, c);
       strip1.show();
       strip.setPixelColor(i, c);
